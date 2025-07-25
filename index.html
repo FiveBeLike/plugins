@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dev Plugins Hub</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -37,7 +37,20 @@
         <option value="v3">v3.0</option>
       </select>
 
-      <div class="result" id="result"></div>
+      <div class="result" id="result">
+        <div class="plugin-result">
+            <h3>Auth Plugin — v2.0</h3>
+            <p><strong>Описание:</strong> Плагин для авторизации пользователей с поддержкой email, пароля и двухфакторной аутентификации.</p>
+            <ul>
+                <li><strong>Версия:</strong> 2.0.0</li>
+                <li><strong>Обновление:</strong> 15 мая 2025</li>
+                <li><strong>Совместимость:</strong> Node.js ≥14.0</li>
+                <li><strong>Автор:</strong> DevSec Team</li>
+            </ul>
+            <button class="btn-download">Скачать</button>
+            <button class="btn-docs">Документация</button>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -46,16 +59,68 @@
   </footer>
 
   <script>
+    const pluginData = {
+      auth: {
+        v1: { name: "Auth Plugin", version: "v1.0", description: "Базовая авторизация пользователей." },
+        v2: { name: "Auth Plugin", version: "v2.0", description: "Авторизация с двухфакторной проверкой." },
+        v3: { name: "Auth Plugin", version: "v3.0", description: "Поддержка OAuth и SSO." }
+      },
+      db: {
+        v1: { name: "DB Plugin", version: "v1.0", description: "Базовое подключение к базе данных." },
+        v2: { name: "DB Plugin", version: "v2.0", description: "Интерфейс ORM и миграции." },
+        v3: { name: "DB Plugin", version: "v3.0", description: "Кеширование и шардирование." }
+      },
+      ui: {
+        v1: { name: "UI Plugin", version: "v1.0", description: "Базовые UI компоненты." },
+        v2: { name: "UI Plugin", version: "v2.0", description: "Адаптивная верстка и темы." },
+        v3: { name: "UI Plugin", version: "v3.0", description: "Интеграция с библиотеками анимации." }
+      }
+    };
+
+    function generateCard(pluginObject) {
+      return `
+        <div class="plugin-result">
+          <h3>${pluginObject.name} — ${pluginObject.version}</h3>
+          <p><strong>Описание:</strong> ${pluginObject.description}</p>
+        </div>
+      `;
+    }
+
     function updateResult() {
       const plugin = document.getElementById("plugin").value;
       const version = document.getElementById("version").value;
       const resultDiv = document.getElementById("result");
+      let output = "";
 
       if (plugin && version) {
-        resultDiv.textContent = `Вы выбрали: ${plugin} (${version})`;
+        const data = pluginData[plugin]?.[version];
+        output = data ? generateCard(data) : "Ничего не найдено :(";
+      } else if (plugin && !version) {
+        const versions = pluginData[plugin];
+        if (versions && Object.keys(versions).length > 0) {
+          output = Object.values(versions).map(v => generateCard(v)).join("");
+        } else {
+          output = "Ничего не найдено :(";
+        }
+      } else if (!plugin && version) {
+        let results = [];
+        for (const group of Object.values(pluginData)) {
+          if (group[version]) {
+            results.push(generateCard(group[version]));
+          }
+        }
+        output = results.length ? results.join("") : "Ничего не найдено :(";
       } else {
-        resultDiv.textContent = "";
+        let allItems = [];
+        for (const group of Object.values(pluginData)) {
+          for (const v of Object.values(group)) {
+            allItems.push(generateCard(v));
+          }
+        }
+        output = allItems.length ? allItems.join("") : "Ничего не найдено :(";
       }
+
+      resultDiv.innerHTML = output;
     }
   </script>
 </body>
