@@ -32,9 +32,9 @@
       <label for="version">Версия:</label>
       <select id="version" onchange="updateResult()">
         <option value="">-- Выберите версию --</option>
-        <option value="v1">v1.0</option>
-        <option value="v2">v2.0</option>
-        <option value="v3">v3.0</option>
+        <option value="1.21.6">Spigot/Paper 1.21.6</option>
+        <option value="1.21">Spigot/Paper 1.21</option>
+        <option value="1.20.1">Spigot/Paper 1.20.1</option>
       </select>
 
       <div class="result" id="result"></div>
@@ -48,19 +48,19 @@
   <script>
     const pluginData = {
       auth: {
-        v1: { name: "Auth Plugin", version: "v1.0", update: "2025-24-03", description: "Базовая авторизация пользователей." },
-        v2: { name: "Auth Plugin", version: "v2.0", update: "2025-24-03", description: "Авторизация с двухфакторной проверкой." },
-        v3: { name: "Auth Plugin", version: "v3.0", update: "2025-24-03", description: "Поддержка OAuth и SSO." }
+        v1: { name: "Auth Plugin", version: "1.21.6", update: "2025-24-03", href: "https://example.com", description: "Базовая авторизация пользователей." },
+        v2: { name: "Auth Plugin", version: "1.21", update: "2025-24-03", href: "https://example.com", description: "Авторизация с двухфакторной проверкой." },
+        v3: { name: "Auth Plugin", version: "1.20.1", update: "2025-24-03", href: "https://example.com", description: "Поддержка OAuth и SSO." }
       },
       db: {
-        v1: { name: "DB Plugin", version: "v1.0", update: "2025-24-03", description: "Базовое подключение к базе данных." },
-        v2: { name: "DB Plugin", version: "v2.0", update: "2025-24-03", description: "Интерфейс ORM и миграции." },
-        v3: { name: "DB Plugin", version: "v3.0", update: "2025-24-03", description: "Кеширование и шардирование." }
+        v1: { name: "DB Plugin", version: "1.21.6", update: "2025-24-03", href: "https://example.com", description: "Базовое подключение к базе данных." },
+        v2: { name: "DB Plugin", version: "1.21", update: "2025-24-03", href: "https://example.com", description: "Интерфейс ORM и миграции." },
+        v3: { name: "DB Plugin", version: "1.20.1", update: "2025-24-03", href: "https://example.com", description: "Кеширование и шардирование." }
       },
       ui: {
-        v1: { name: "UI Plugin", version: "v1.0", update: "2025-24-03", description: "Базовые UI компоненты." },
-        v2: { name: "UI Plugin", version: "v2.0", update: "2025-24-03", description: "Адаптивная верстка и темы." },
-        v3: { name: "UI Plugin", version: "v3.0", update: "2025-24-03", description: "Интеграция с библиотеками анимации." }
+        v1: { name: "UI Plugin", version: "1.21.6", update: "2025-24-03", href: "https://example.com", description: "Базовые UI компоненты." },
+        v2: { name: "UI Plugin", version: "1.21", update: "2025-24-03", href: "https://example.com", description: "Адаптивная верстка и темы." },
+        v3: { name: "UI Plugin", version: "1.20.1", update: "2025-24-03", href: "https://example.com", description: "Интеграция с библиотеками анимации." }
       }
     };
 
@@ -116,7 +116,9 @@
             const { name, version, description } = plugin.v3;
             container.innerHTML += `
                 <div class="section-box">
-                    <h3>${name} — ${version}</h3>
+                    <h3>${name}</h3>&nbsp;&nbsp;<a href="${href}" class="btn">Перейти</a>
+                    <p><strong>Версия:</strong>${version}</p>
+                    <p><strong>Последнее обновление:</strong>${update}</p>
                     <p><strong>Описание:</strong> ${description}</p>
                 </div>
             `;

@@ -128,7 +128,7 @@ footer {
 .btn-docs {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #007acc;
+  background-color: #cf4747;
   color: white;
   border: none;
   border-radius: 4px;
@@ -138,5 +138,20 @@ footer {
 
 .btn-download:hover,
 .btn-docs:hover {
-  background-color: #005d99;
+  background-color: #943535;
+}
+
+.btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #cf4747;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #943535;
 }
