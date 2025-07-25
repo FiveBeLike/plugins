@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Plugins Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Dev Plugins Hub</h1>
+      <ul class="nav-links">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Плагины</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="plugin-selector">
+      <h2>Выберите плагин и версию</h2>
+      <label for="plugin">Плагин:</label>
+      <select id="plugin" onchange="updateResult()">
+        <option value="">-- Выберите плагин --</option>
+        <option value="auth">Auth Plugin</option>
+        <option value="db">DB Plugin</option>
+        <option value="ui">UI Plugin</option>
+      </select>
+
+      <label for="version">Версия:</label>
+      <select id="version" onchange="updateResult()">
+        <option value="">-- Выберите версию --</option>
+        <option value="v1">v1.0</option>
+        <option value="v2">v2.0</option>
+        <option value="v3">v3.0</option>
+      </select>
+
+      <div class="result" id="result"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Dev Team</p>
+  </footer>
+
+  <script>
+    function updateResult() {
+      const plugin = document.getElementById("plugin").value;
+      const version = document.getElementById("version").value;
+      const resultDiv = document.getElementById("result");
+
+      if (plugin && version) {
+        resultDiv.textContent = `Вы выбрали: ${plugin} (${version})`;
+      } else {
+        resultDiv.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
